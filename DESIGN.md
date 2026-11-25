@@ -136,7 +136,7 @@ spacing:
 The design system establishes a high-performance, utilitarian aesthetic tailored for fast-paced Italian street food ordering and pizza al taglio takeaway. Built for rapid scanning on mobile devices in high-glare or late-night street environments, the visual character draws inspiration from neon-lit Roman display counters, chalk-written blackboard slates, and industrial kitchen order dockets.
 
 The personality balances artisanal Italian craft with high-velocity street utility:
-- **Atmospheric & Focused:** Deep charcoal and pitch surfaces simulate nighttime Corso Cavour storefronts, eliminating visual clutter to direct full focus toward vibrant food photography and dual-format pricing.
+- **Atmospheric & Focused:** Deep charcoal and pitch surfaces simulate the nighttime storefront at Corso Camillo Benso Conte di Cavour, 110, 62100 Macerata MC, eliminating visual clutter to direct full focus toward vibrant food photography and dual-format pricing.
 - **Punchy & Urgent:** High-visibility electric warning yellow accents guide immediate micro-interactions (add to cart, select portion size, live store status).
 - **Legible & Structural:** Crisp hairline divisions, dense information clusters, and condensed typographic hierarchy deliver immediate comprehension for commuters on the move.
 

@@ -73,7 +73,7 @@ function SiteLayout() {
       <footer className="site-footer">
         <Link className="footer-brand" to="/">Pizza in Corso</Link>
         <Link to="/chi-siamo">Chi siamo</Link>
-        <span>Corso Cavour 110 · Macerata</span>
+        <span>{address}</span>
         <a href={`tel:${phone}`}>349 238 4245</a>
       </footer>
       <nav className="mobile-nav" aria-label="Navigazione">
@@ -99,7 +99,7 @@ function HomePage() {
         <div className="hero-copy">
           <span className="eyebrow"><span className="status-dot" /> PINSERIA E PIZZA AL TAGLIO · MACERATA</span>
           <h1>La pinsa buona<br />ha il suo <em>corso.</em></h1>
-          <p>Impasto a lunga lievitazione, ingredienti scelti e tutto il gusto della pizza romana. Da ritirare calda in Corso Cavour.</p>
+          <p>Impasto a lunga lievitazione, ingredienti scelti e tutto il gusto della pizza romana. Da ritirare calda in Corso Camillo Benso Conte di Cavour, 110, 62100 Macerata MC.</p>
           <div className="button-row">
             <Link className="button button-primary" to="/menu"><Icon>restaurant_menu</Icon> Guarda il menu</Link>
             <a className="button button-secondary" href={`tel:${phone}`}><Icon>call</Icon> Chiama e ordina</a>
@@ -125,7 +125,7 @@ function HomePage() {
 
       <section className="home-info-grid">
         <InfoTile icon="bakery_dining" title="Impasto lento" text="Maturazione naturale di 72 ore: fuori croccante, dentro morbido." to="/impasto" link="Scopri come lo facciamo" />
-        <InfoTile icon="near_me" title="Ci trovi in centro" text="Ritiro da asporto in Corso Cavour 110, nel cuore di Macerata." to="/dove-siamo" link="Indicazioni stradali" />
+        <InfoTile icon="near_me" title="Ci trovi in centro" text={`Ritiro da asporto in ${address}.`} to="/dove-siamo" link="Indicazioni stradali" />
         <InfoTile icon="schedule" title="Ordina in anticipo" text="Chiamaci per concordare il ritiro e trovare la pinsa appena pronta." to="/orari" link="Orari e contatti" />
       </section>
     </div>
@@ -154,7 +154,7 @@ function AboutSection({ compact = false }) {
           <Title>Chi siamo</Title>
           <p className="about-lead">
             Siamo <strong>Luca e Cristina</strong>: due ruoli diversi, un solo modo di lavorare.
-            In Corso Cavour facciamo tutto da asporto, con cura per quello che esce dal forno
+            In Corso Camillo Benso Conte di Cavour, 110, 62100 Macerata MC facciamo tutto da asporto, con cura per quello che esce dal forno
             e per chi passa a ritirarlo.
           </p>
           {!compact && (
@@ -222,7 +222,7 @@ function AboutSection({ compact = false }) {
               Questa scelta ci permette di concentrare energie sulla qualità di ciò che
               Cristina sforna e sull’attenzione a chi viene a ritirare il proprio ordine.
             </p>
-            <Link className="text-link" to="/dove-siamo">Vieni a ritirare in Corso Cavour <Icon>arrow_forward</Icon></Link>
+            <Link className="text-link" to="/dove-siamo">Vieni a ritirare in Corso Camillo Benso Conte di Cavour, 110, 62100 Macerata MC <Icon>arrow_forward</Icon></Link>
           </div>
         </div>
       )}
@@ -409,7 +409,7 @@ function LocationPage() {
 
   return (
     <div className="content inner-page">
-      <PageIntro eyebrow="PASSA A TROVARCI" title="Dove siamo" text="Pizza in Corso è in Corso Cavour, nel centro di Macerata. Prepariamo ordini esclusivamente da asporto." />
+      <PageIntro eyebrow="PASSA A TROVARCI" title="Dove siamo" text={`Pizza in Corso è in ${address}. Prepariamo ordini esclusivamente da asporto.`} />
       <section className="location-layout">
         <div className="map-frame"><iframe title="Mappa di Pizza in Corso, Macerata" src={`https://maps.google.com/maps?q=${mapSearch}&output=embed`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>
         <div className="location-card">
@@ -426,7 +426,7 @@ function LocationPage() {
       <div className="location-tip"><Icon>lightbulb</Icon><p><strong>Un consiglio:</strong> chiamaci prima di partire, così prepariamo il tuo ordine e riduci l'attesa al banco.</p><Link className="text-link" to="/menu">Scegli cosa ordinare <Icon>arrow_forward</Icon></Link></div>
       <div className="location-tip parking-tip">
         <Icon>local_parking</Icon>
-        <p><strong>Arrivi in auto?</strong> Nelle vicinanze trovi parcheggi pubblici. Apri la mappa per vedere quelli intorno a Corso Cavour 110; disponibilità e tariffe possono variare.</p>
+        <p><strong>Arrivi in auto?</strong> Nelle vicinanze trovi parcheggi pubblici. Apri la mappa per vedere quelli intorno a {address}; disponibilità e tariffe possono variare.</p>
         <a className="text-link" href={`https://www.google.com/maps/search/?api=1&query=${parkingSearch}`} target="_blank" rel="noreferrer">Cerca parcheggi vicini <Icon>arrow_forward</Icon></a>
       </div>
     </div>
@@ -454,7 +454,7 @@ function HoursPage() {
       <section className="hours-card">
         <div className="hours-row"><Icon>schedule</Icon><span><strong>Orario riportato sul menu</strong><small>Da martedì a domenica · 16:00–21:00</small></span><span className="hours-badge">Verifica per telefono</span></div>
         <div className="hours-row"><Icon>call</Icon><span><strong>Ordini e informazioni</strong><small>349 238 4245</small></span><a className="button button-primary" href={`tel:${phone}`}>Chiama</a></div>
-        <div className="hours-row"><Icon>pin_drop</Icon><span><strong>Ritiro da asporto</strong><small>Corso Cavour 110 · Macerata</small></span><Link className="button button-secondary" to="/dove-siamo">Apri mappa</Link></div>
+        <div className="hours-row"><Icon>pin_drop</Icon><span><strong>Ritiro da asporto</strong><small>{address}</small></span><Link className="button button-secondary" to="/dove-siamo">Apri mappa</Link></div>
       </section>
       <p className="menu-note">Gli orari possono cambiare in base alla giornata e alle disponibilità del forno. La telefonata è il modo più sicuro per confermare l'apertura e prenotare.</p>
     </div>
