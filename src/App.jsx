@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useLayoutEffect, useMemo, useState } from "react";
 import {
   Link,
   NavLink,
@@ -6,6 +6,7 @@ import {
   Outlet,
   Route,
   Routes,
+  useLocation,
   useNavigate,
   useParams,
 } from "react-router-dom";
@@ -15,6 +16,17 @@ import { useCart } from "./context/CartContext.jsx";
 const phone = "+393492384245";
 const address = "Corso Camillo Benso Conte di Cavour 48, 62100 Macerata";
 const mapSearch = encodeURIComponent(address);
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function Icon({ children, className = "" }) {
   return <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{children}</span>;
@@ -343,17 +355,20 @@ function NotFoundPage() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<SiteLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="menu" element={<MenuPage />} />
-        <Route path="pizza/:pizzaId" element={<PizzaPage />} />
-        <Route path="carrello" element={<CartPage />} />
-        <Route path="dove-siamo" element={<LocationPage />} />
-        <Route path="impasto" element={<DoughPage />} />
-        <Route path="orari" element={<HoursPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route element={<SiteLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="menu" element={<MenuPage />} />
+          <Route path="pizza/:pizzaId" element={<PizzaPage />} />
+          <Route path="carrello" element={<CartPage />} />
+          <Route path="dove-siamo" element={<LocationPage />} />
+          <Route path="impasto" element={<DoughPage />} />
+          <Route path="orari" element={<HoursPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
