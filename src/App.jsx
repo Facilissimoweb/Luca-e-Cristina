@@ -102,6 +102,7 @@ function HomePage() {
           <div className="button-row">
             <Link className="button button-primary" to="/menu"><Icon>restaurant_menu</Icon> Guarda il menu</Link>
             <a className="button button-secondary" href={`tel:${phone}`}><Icon>call</Icon> Chiama e ordina</a>
+            <Link className="button button-secondary" to="/chi-siamo"><Icon>groups</Icon> Chi siamo</Link>
           </div>
           <div className="hero-meta"><span><Icon>takeout_dining</Icon> Solo asporto</span><span><Icon>schedule</Icon> Mar–Dom · 16:00–21:00</span></div>
         </div>
@@ -110,8 +111,6 @@ function HomePage() {
           <div className="hero-art-circle">72<small>ORE</small></div>
         </div>
       </section>
-
-      <AboutSection compact />
 
       <section className="section-block">
         <div className="section-heading">
