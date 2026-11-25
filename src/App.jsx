@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   Link,
   NavLink,
@@ -17,15 +17,6 @@ const phone = "+393492384245";
 const address = "Corso Camillo Benso Conte di Cavour, 110, 62100 Macerata MC";
 const mapSearch = encodeURIComponent(address);
 const parkingSearch = encodeURIComponent(`parcheggi vicino a ${address}`);
-const translationLanguages = [
-  { code: "it", shortCode: "IT", label: "Italiano", nativeLabel: "Italiano" },
-  { code: "en", shortCode: "EN", label: "Inglese", nativeLabel: "English" },
-  { code: "fr", shortCode: "FR", label: "Francese", nativeLabel: "Français" },
-  { code: "es", shortCode: "ES", label: "Spagnolo", nativeLabel: "Español" },
-  { code: "zh-CN", shortCode: "ZH", label: "Cinese semplificato", nativeLabel: "中文（简体）" },
-  { code: "ar", shortCode: "AR", label: "Arabo", nativeLabel: "العربية" },
-];
-
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -41,51 +32,159 @@ function Icon({ children, className = "" }) {
   return <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{children}</span>;
 }
 
-function LanguageControl() {
+function ChatText({ text }) {
+  const lines = text.split("\n");
+  const blocks = [];
+  let bullets = [];
+
+  const flushBullets = () => {
+    if (bullets.length) {
+      blocks.push(<ul key={`list-${blocks.length}`}>{bullets}</ul>);
+      bullets = [];
+    }
+  };
+
+  lines.forEach((line, index) => {
+    const bullet = line.match(/^\s*(?:[-*•]|\d+[.)])\s+(.+)/);
+    if (bullet) {
+      bullets.push(<li key={index}>{bullet[1]}</li>);
+      return;
+    }
+    flushBullets();
+    if (line.trim()) blocks.push(<p key={`p-${index}`}>{line}</p>);
+  });
+  flushBullets();
+
+  return <div className="chat-message-content">{blocks}</div>;
+}
+
+function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [draft, setDraft] = useState("");
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState("");
+  const [messages, setMessages] = useState([
+    {
+      role: "assistant",
+      content: "Ciao! Sono qui per aiutarti. Posso consigliarti dal menu e darti informazioni su ingredienti, orari e ritiro.",
+    },
+  ]);
+  const endOfMessagesRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
-    document.querySelectorAll("iframe.goog-te-banner-frame, .goog-te-banner-frame, body > .skiptranslate")
-      .forEach((frame) => frame.remove());
-    document.body.style.setProperty("top", "0", "important");
+    const clearGoogleTranslateBanner = () => {
+      document.querySelectorAll("iframe.goog-te-banner-frame, .goog-te-banner-frame, body > .skiptranslate")
+        .forEach((frame) => frame.remove());
+      document.body.style.setProperty("top", "0", "important");
+    };
+
+    clearGoogleTranslateBanner();
+    const observer = new MutationObserver(clearGoogleTranslateBanner);
+    observer.observe(document.body, { childList: true });
     document.cookie = "googtrans=; Max-Age=0; path=/";
+
+    return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (isOpen) inputRef.current?.focus();
+    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [isOpen, isSending, messages]);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isOpen]);
+
+  const sendMessage = async (event) => {
+    event.preventDefault();
+    const content = draft.trim();
+    if (!content || isSending) return;
+
+    const nextMessages = [...messages, { role: "user", content }];
+    setMessages(nextMessages);
+    setDraft("");
+    setError("");
+    setIsSending(true);
+
+    try {
+      const conversation = nextMessages
+        .filter((message) => message.role !== "assistant" || message !== messages[0])
+        .slice(-12);
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: conversation }),
+      });
+      let result;
+      try {
+        result = await response.json();
+      } catch {
+        throw new Error("Risposta del servizio chat non valida. Riprova o contatta Luca.");
+      }
+      if (!response.ok) throw new Error(result.error || "Servizio chat momentaneamente non disponibile.");
+      if (typeof result.reply !== "string" || !result.reply.trim()) {
+        throw new Error("La chat non ha ricevuto una risposta valida.");
+      }
+      setMessages((current) => [...current, { role: "assistant", content: result.reply.trim() }]);
+    } catch (requestError) {
+      console.error("Invio messaggio alla chat non riuscito.", requestError);
+      setError(requestError.message || "Non riesco a rispondere in questo momento. Riprova o chiama Luca.");
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
-    <aside className="language-control" aria-label="Traduzione della pagina">
+    <aside className="chat-widget" aria-label="Assistente di Pizza in Corso">
       <button
-        className="language-trigger"
+        className="chat-launcher"
         type="button"
-        aria-label="Apri le opzioni di traduzione, italiano, inglese, francese, spagnolo, cinese semplificato e arabo"
+        aria-label={isOpen ? "Chiudi l'assistente" : "Apri l'assistente di Pizza in Corso"}
         aria-expanded={isOpen}
-        aria-haspopup="menu"
+        aria-controls="pizzeria-chat-panel"
         onClick={() => setIsOpen((open) => !open)}
       >
-        <Icon>translate</Icon><span>IT</span>
+        <Icon>{isOpen ? "close" : "chat"}</Icon><span>{isOpen ? "Chiudi" : "Chiedi a Luca"}</span>
       </button>
       {isOpen && (
-        <div className="language-popover" role="menu" aria-label="Lingua della pagina">
-          <span className="language-heading">Traduci la pagina</span>
-          <p className="language-status">Si apre una copia tradotta in una nuova scheda. Questa pagina resta invariata.</p>
-          {translationLanguages.map(({ code, shortCode, label, nativeLabel }) => (
-            <a
-              key={code}
-              className="language-option"
-              role="menuitem"
-              lang={code}
-              href={code === "it"
-                ? window.location.href
-                : `https://translate.google.com/translate?sl=it&tl=${encodeURIComponent(code)}&u=${encodeURIComponent(window.location.href)}`}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => setIsOpen(false)}
-            >
-              <span className="language-code">{shortCode}</span>
-              <span className="language-name">{nativeLabel}<small>{label}</small></span>
-              <Icon>open_in_new</Icon>
-            </a>
-          ))}
-        </div>
+        <section className="chat-panel" id="pizzeria-chat-panel" aria-label="Chat con l'assistente">
+          <header className="chat-header">
+            <span className="chat-avatar"><Icon>local_pizza</Icon></span>
+            <span className="chat-title"><strong>Chiedi a Luca</strong><small>Assistente · menu e ritiro</small></span>
+            <button type="button" className="chat-close" onClick={() => setIsOpen(false)} aria-label="Chiudi chat"><Icon>close</Icon></button>
+          </header>
+          <div className="chat-messages" role="log" aria-live="polite" aria-relevant="additions text">
+            {messages.map((message, index) => (
+              <article className={`chat-message ${message.role}`} key={`${message.role}-${index}`}>
+                <ChatText text={message.content} />
+              </article>
+            ))}
+            {isSending && <p className="chat-typing" role="status">Sto preparando una risposta…</p>}
+            <div ref={endOfMessagesRef} />
+          </div>
+          {error && <p className="chat-error" role="alert">{error}</p>}
+          <form className="chat-form" onSubmit={sendMessage}>
+            <label className="visually-hidden" htmlFor="pizzeria-chat-input">Scrivi la tua domanda</label>
+            <input
+              id="pizzeria-chat-input"
+              ref={inputRef}
+              value={draft}
+              onChange={(event) => setDraft(event.target.value)}
+              placeholder="Scrivi una domanda…"
+              maxLength={1000}
+              autoComplete="off"
+            />
+            <button type="submit" className="chat-send" disabled={!draft.trim() || isSending} aria-label="Invia messaggio">
+              <Icon>send</Icon>
+            </button>
+          </form>
+        </section>
       )}
     </aside>
   );
@@ -127,7 +226,7 @@ function SiteLayout() {
           </div>
         </div>
       </header>
-      <LanguageControl />
+      <ChatWidget />
       <main className="page-main"><Outlet /></main>
       <footer className="site-footer">
         <Link className="footer-brand" to="/">Pizza in Corso</Link>
