@@ -103,6 +103,31 @@ button { color: inherit; }
 .info-tile > .material-symbols-outlined { color: var(--gold); font-size: 23px; }
 .info-tile h3 { margin: 13px 0 7px; font-size: 20px; }
 .info-tile p { min-height: 46px; margin: 0 0 14px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.about-section { display: grid; gap: 22px; margin-top: 30px; padding: clamp(20px, 4vw, 42px); border: 1px solid var(--line); border-radius: 10px; background: radial-gradient(ellipse at 9% 0%, rgba(245,183,0,.1), transparent 34%), var(--surface-low); }
+.about-section-compact { margin-top: 48px; }
+.about-intro { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(20px, 4vw, 44px); align-items: center; }
+.about-slogan { max-width: 570px; margin: 13px 0 10px; color: var(--gold-light); font: 700 clamp(25px, 4vw, 43px)/1.02 "Archivo Narrow", sans-serif; letter-spacing: -.015em; }
+.about-copy h1, .about-copy h2 { margin: 0 0 13px; font: 700 clamp(36px, 5vw, 54px)/1 "Archivo Narrow", sans-serif; letter-spacing: -.02em; }
+.about-lead, .about-story, .about-card p, .about-takeaway p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+.about-lead { max-width: 620px; margin: 0; font-size: 14px; }
+.about-story { max-width: 620px; margin: 10px 0 0; }
+.about-section strong { color: var(--ink); font-weight: 700; }
+.about-actions { margin-top: 19px; }
+.about-image-placeholder { min-height: 260px; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; border: 1px dashed #75623a; border-radius: 8px; background: radial-gradient(ellipse at 50% 80%, rgba(209,143,51,.2), transparent 56%), linear-gradient(145deg,#29251e,#171615 72%); color: var(--gold-light); text-align: center; }
+.about-image-mark { width: 52px; height: 52px; display: grid; place-items: center; border: 1px solid rgba(255,216,138,.42); border-radius: 50%; background: rgba(14,14,14,.5); }
+.about-image-mark .material-symbols-outlined { font-size: 24px; }
+.about-image-placeholder figcaption { max-width: 280px; color: var(--ink); font: 600 21px/1.15 "Archivo Narrow", sans-serif; }
+.about-image-placeholder small { max-width: 260px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+.about-card-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.about-card { min-width: 0; padding: 19px; border: 1px solid var(--line); border-radius: 7px; background: rgba(14,14,14,.55); }
+.about-card-icon { width: 38px; height: 38px; margin-bottom: 15px; display: grid; place-items: center; border-radius: 5px; background: rgba(245,183,0,.12); color: var(--gold-light); }
+.about-card .eyebrow { font-size: 9px; }
+.about-card h2 { margin: 9px 0 7px; font: 600 23px/1.05 "Archivo Narrow", sans-serif; }
+.about-card p { margin: 0; font-size: 12px; }
+.about-takeaway { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(20px, 4vw, 42px); align-items: center; padding-top: 20px; border-top: 1px solid var(--line); }
+.about-takeaway .about-image-placeholder { min-height: 210px; }
+.about-takeaway h2 { margin: 9px 0; font: 600 clamp(25px, 3vw, 34px)/1.05 "Archivo Narrow", sans-serif; }
+.about-takeaway p { max-width: 620px; margin: 0 0 13px; }
 .page-intro { max-width: 730px; margin-bottom: 27px; }
 .page-intro h1 { font-size: clamp(42px, 5vw, 58px); }
 .page-intro > p { margin-top: 13px; font-size: 14px; }
@@ -219,8 +244,8 @@ button { color: inherit; }
 .mobile-nav { display: none; }
 
 @media (max-width: 850px) {
-  .desktop-nav { gap: 12px; }
-  .desktop-nav a { font-size: 11px; }
+  .desktop-nav { gap: 9px; }
+  .desktop-nav a { font-size: 10px; }
   .phone-link { padding: 0 9px; }
   .phone-link span:not(.material-symbols-outlined) { display: none; }
   .product-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
@@ -267,6 +292,21 @@ button { color: inherit; }
   .price-action .material-symbols-outlined { font-size: 15px; }
   .details-link { margin-top: 7px; }
   .home-info-grid { grid-template-columns: 1fr; gap: 9px; margin-top: 28px; }
+  .about-section { gap: 17px; margin-top: 24px; padding: 17px; }
+  .about-section-compact { margin-top: 32px; }
+  .about-intro, .about-takeaway { grid-template-columns: 1fr; gap: 15px; }
+  .about-slogan { margin-top: 10px; font-size: clamp(27px, 8vw, 38px); }
+  .about-copy h1, .about-copy h2 { margin-bottom: 9px; font-size: 38px; }
+  .about-lead, .about-story, .about-card p, .about-takeaway p { font-size: 12px; }
+  .about-actions { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 15px; }
+  .about-actions .button { width: 100%; padding: 0 10px; font-size: 11px; }
+  .about-image-placeholder { min-height: 190px; }
+  .about-card-grid { grid-template-columns: 1fr; gap: 8px; }
+  .about-card { padding: 15px; }
+  .about-card-icon { margin-bottom: 10px; }
+  .about-card h2 { margin: 6px 0; font-size: 21px; }
+  .about-takeaway { padding-top: 15px; }
+  .about-takeaway .about-image-placeholder { min-height: 170px; }
   .info-tile { padding: 15px; }
   .info-tile h3 { margin: 7px 0 4px; }
   .info-tile p { min-height: 0; margin-bottom: 8px; }
@@ -297,7 +337,7 @@ button { color: inherit; }
   .hours-row .button { min-height: 36px; padding: 0 10px; font-size: 10px; }
   .site-footer { min-height: unset; padding: 16px 14px 10px; flex-wrap: wrap; gap: 8px 14px; justify-content: flex-start; font-size: 9px; }
   .footer-brand { width: 100%; }
-  .mobile-nav { position: fixed; z-index: 30; right: 0; bottom: 0; left: 0; min-height: calc(60px + env(safe-area-inset-bottom)); padding: 5px 9px env(safe-area-inset-bottom); display: grid; grid-template-columns: repeat(4,1fr); background: rgba(19,19,19,.97); border-top: 1px solid var(--line); backdrop-filter: blur(14px); }
+  .mobile-nav { position: fixed; z-index: 30; right: 0; bottom: 0; left: 0; min-height: calc(60px + env(safe-area-inset-bottom)); padding: 5px 9px env(safe-area-inset-bottom); display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); background: rgba(19,19,19,.97); border-top: 1px solid var(--line); backdrop-filter: blur(14px); }
   .mobile-nav-link { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--muted); font-size: 9px; }
   .mobile-nav-link.active { color: var(--gold-light); }
   .nav-icon-wrap { position: relative; display: inline-flex; }

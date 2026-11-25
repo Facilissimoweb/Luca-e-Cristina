@@ -37,6 +37,7 @@ function SiteLayout() {
   const navItems = [
     { to: "/", label: "Home", icon: "home", end: true },
     { to: "/menu", label: "Menu", icon: "local_pizza" },
+    { to: "/chi-siamo", label: "Chi siamo", icon: "groups" },
     { to: "/carrello", label: "Carrello", icon: "shopping_bag" },
     { to: "/dove-siamo", label: "Dove siamo", icon: "map" },
   ];
@@ -52,6 +53,7 @@ function SiteLayout() {
           <nav className="desktop-nav" aria-label="Navigazione principale">
             <NavLink to="/" end>Home</NavLink>
             <NavLink to="/menu">Menu</NavLink>
+            <NavLink to="/chi-siamo">Chi siamo</NavLink>
             <NavLink to="/impasto">Il nostro impasto</NavLink>
             <NavLink to="/orari">Orari</NavLink>
             <NavLink to="/dove-siamo">Dove siamo</NavLink>
@@ -69,6 +71,7 @@ function SiteLayout() {
       <main className="page-main"><Outlet /></main>
       <footer className="site-footer">
         <Link className="footer-brand" to="/">Pizza in Corso</Link>
+        <Link to="/chi-siamo">Chi siamo</Link>
         <span>Corso Cavour 48 · Macerata</span>
         <a href={`tel:${phone}`}>349 238 4245</a>
       </footer>
@@ -108,6 +111,8 @@ function HomePage() {
         </div>
       </section>
 
+      <AboutSection compact />
+
       <section className="section-block">
         <div className="section-heading">
           <div><span className="eyebrow">DAL NOSTRO BANCO</span><h2>Le più amate</h2></div>
@@ -124,6 +129,104 @@ function HomePage() {
         <InfoTile icon="schedule" title="Ordina in anticipo" text="Chiamaci per concordare il ritiro e trovare la pinsa appena pronta." to="/orari" link="Orari e contatti" />
       </section>
     </div>
+  );
+}
+
+function AboutImagePlaceholder({ caption, label }) {
+  return (
+    <figure className="about-image-placeholder">
+      <img className="about-image-mark" src="/images/chi-siamo-placeholder.svg" alt={label} />
+      <figcaption>{caption}</figcaption>
+      <small>Segnaposto: sostituisci questo riquadro con la foto corrispondente.</small>
+    </figure>
+  );
+}
+
+function AboutSection({ compact = false }) {
+  const Title = compact ? "h2" : "h1";
+
+  return (
+    <section className={`about-section${compact ? " about-section-compact" : ""}`}>
+      <div className="about-intro">
+        <div className="about-copy">
+          <span className="eyebrow">{compact ? "IL VOLTO DIETRO AL BANCO" : "IL NOSTRO MODO DI FARE"}</span>
+          <p className="about-slogan">72 ore di mestiere, l'unica pinsa di Macerata.</p>
+          <Title>Chi siamo</Title>
+          <p className="about-lead">
+            Siamo <strong>Luca e Cristina</strong>: due ruoli diversi, un solo modo di lavorare.
+            In Corso Cavour facciamo tutto da asporto, con cura per quello che esce dal forno
+            e per chi passa a ritirarlo.
+          </p>
+          {!compact && (
+            <p className="about-story">
+              Niente tavoli, niente passaggi di troppo: tutta la nostra energia va
+              <strong> alla qualità del prodotto</strong> e a un’accoglienza attenta,
+              dal primo consiglio al ritiro.
+            </p>
+          )}
+          <div className="button-row about-actions">
+            <Link className="button button-primary" to="/menu"><Icon>restaurant_menu</Icon> Sfoglia il Menù</Link>
+            <a className="button button-secondary" href={`tel:${phone}`}><Icon>call</Icon> Chiama Luca — 349 238 4245</a>
+          </div>
+        </div>
+        <AboutImagePlaceholder
+          label="Segnaposto per una fotografia di Luca e Cristina in pizzeria, da sostituire con il loro ritratto."
+          caption="Luca e Cristina, al lavoro in pizzeria"
+        />
+      </div>
+
+      <div className="about-card-grid">
+        <article className="about-card">
+          <span className="about-card-icon"><Icon>local_fire_department</Icon></span>
+          <span className="eyebrow">LABORATORIO E FORNO</span>
+          <h2>Cristina, chef pizzaiola</h2>
+          <p>
+            È al lavoro in laboratorio e davanti al forno: con <strong>mani sagge</strong>,
+            impasta e sforna con amore la pizza e la pinsa. A Macerata l’unica pinsa la
+            facciamo noi.
+          </p>
+        </article>
+        <article className="about-card">
+          <span className="about-card-icon"><Icon>record_voice_over</Icon></span>
+          <span className="eyebrow">AL BANCONE E AL TELEFONO</span>
+          <h2>Luca, l’anima parlante</h2>
+          <p>
+            Luca accoglie al banco e risponde al telefono: <strong>ascolta, consiglia</strong>
+            e prende le prenotazioni con disponibilità e chiarezza. Così sai cosa scegliere
+            e quando passare.
+          </p>
+        </article>
+        <article className="about-card about-card-dough">
+          <span className="about-card-icon"><Icon>schedule</Icon></span>
+          <span className="eyebrow">IL TEMPO, CON CONOSCENZA</span>
+          <h2>72 ore, fatte con mestiere</h2>
+          <p>
+            Non è un numero messo in vetrina: è il tempo che nasce dalla conoscenza specifica
+            di <strong>ogni prodotto, farina e materia prima</strong> presente nel nostro
+            laboratorio. Ogni impasto ha il suo equilibrio.
+          </p>
+        </article>
+      </div>
+
+      {!compact && (
+        <div className="about-takeaway">
+          <AboutImagePlaceholder
+            label="Segnaposto per una fotografia del laboratorio e del forno di Pizza in Corso."
+            caption="Il laboratorio e il forno"
+          />
+          <div>
+            <span className="eyebrow">100% ASPORTO · CORSO CAVOUR, MACERATA</span>
+            <h2>Un banco, un forno, tutta la nostra attenzione.</h2>
+            <p>
+              Non abbiamo tavoli a sedere: siamo una pizzeria <strong>100% da asporto</strong>.
+              Questa scelta ci permette di concentrare energie sulla qualità di ciò che
+              Cristina sforna e sull’attenzione a chi viene a ritirare il proprio ordine.
+            </p>
+            <Link className="text-link" to="/dove-siamo">Vieni a ritirare in Corso Cavour <Icon>arrow_forward</Icon></Link>
+          </div>
+        </div>
+      )}
+    </section>
   );
 }
 
@@ -335,6 +438,10 @@ function DoughPage() {
   );
 }
 
+function AboutPage() {
+  return <div className="content inner-page"><AboutSection /></div>;
+}
+
 function HoursPage() {
   return (
     <div className="content inner-page">
@@ -364,6 +471,7 @@ export default function App() {
           <Route path="pizza/:pizzaId" element={<PizzaPage />} />
           <Route path="carrello" element={<CartPage />} />
           <Route path="dove-siamo" element={<LocationPage />} />
+          <Route path="chi-siamo" element={<AboutPage />} />
           <Route path="impasto" element={<DoughPage />} />
           <Route path="orari" element={<HoursPage />} />
           <Route path="*" element={<NotFoundPage />} />
