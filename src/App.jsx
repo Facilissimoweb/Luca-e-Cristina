@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import {
   Link,
   NavLink,
@@ -17,6 +17,14 @@ const phone = "+393492384245";
 const address = "Corso Camillo Benso Conte di Cavour, 110, 62100 Macerata MC";
 const mapSearch = encodeURIComponent(address);
 const parkingSearch = encodeURIComponent(`parcheggi vicino a ${address}`);
+const translationLanguages = [
+  { code: "it", label: "Italiano", nativeLabel: "Italiano" },
+  { code: "en", label: "Inglese", nativeLabel: "English" },
+  { code: "fr", label: "Francese", nativeLabel: "Français" },
+  { code: "es", label: "Spagnolo", nativeLabel: "Español" },
+  { code: "zh-CN", label: "Cinese semplificato", nativeLabel: "中文（简体）" },
+  { code: "ar", label: "Arabo", nativeLabel: "العربية" },
+];
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -31,6 +39,95 @@ function ScrollToTop() {
 
 function Icon({ children, className = "" }) {
   return <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{children}</span>;
+}
+
+function LanguageControl() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("it");
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const savedTranslation = document.cookie.match(/(?:^|;\s*)googtrans=\/it\/([^;]+)/);
+    if (savedTranslation) setSelectedLanguage(decodeURIComponent(savedTranslation[1]));
+
+    let active = true;
+    window.googleTranslateElementInit = () => {
+      if (!active || !window.google?.translate?.TranslateElement) return;
+      new window.google.translate.TranslateElement({
+        pageLanguage: "it",
+        includedLanguages: "en,fr,es,zh-CN,ar",
+        autoDisplay: false,
+      }, "google_translate_element");
+      setIsReady(true);
+      setMessage("");
+    };
+
+    if (window.google?.translate?.TranslateElement) {
+      window.googleTranslateElementInit();
+    } else if (!document.getElementById("google-translate-script")) {
+      const script = document.createElement("script");
+      script.id = "google-translate-script";
+      script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      script.onerror = () => setMessage("Google Translate non è raggiungibile. Verifica la connessione e ricarica la pagina.");
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const changeLanguage = (language) => {
+    const selector = document.querySelector("#google_translate_element select.goog-te-combo");
+    if (!selector) {
+      setMessage("Traduzione in caricamento. Riprova tra qualche secondo.");
+      return;
+    }
+    selector.value = language === "it" ? "" : language;
+    selector.dispatchEvent(new Event("change", { bubbles: true }));
+    setSelectedLanguage(language);
+    setMessage("");
+    setIsOpen(false);
+  };
+
+  return (
+    <div className="language-control">
+      <button
+        className="language-trigger"
+        type="button"
+        aria-label="Seleziona la lingua della pagina"
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
+        onClick={() => setIsOpen((open) => !open)}
+      >
+        <Icon>translate</Icon><span>Lingua</span>
+      </button>
+      {isOpen && (
+        <div className="language-popover" role="menu" aria-label="Lingua della pagina">
+          <span className="language-heading">Traduci la pagina</span>
+          {translationLanguages.map(({ code, label, nativeLabel }) => (
+            <button
+              key={code}
+              className={`language-option${selectedLanguage === code ? " selected" : ""}`}
+              type="button"
+              role="menuitemradio"
+              aria-checked={selectedLanguage === code}
+              lang={code}
+              onClick={() => changeLanguage(code)}
+            >
+              <span>{nativeLabel}</span><small>{label}</small>
+              {selectedLanguage === code && <Icon>check</Icon>}
+            </button>
+          ))}
+          {message && <p className="language-status" role="status">{message}</p>}
+          {!isReady && !message && <p className="language-status">Caricamento traduzione Google…</p>}
+        </div>
+      )}
+      <div id="google_translate_element" className="google-translate-widget" aria-hidden="true" />
+    </div>
+  );
 }
 
 function SiteLayout() {
@@ -60,6 +157,7 @@ function SiteLayout() {
             <NavLink to="/dove-siamo">Dove siamo</NavLink>
           </nav>
           <div className="header-actions">
+            <LanguageControl />
             <a className="phone-link" href={`tel:${phone}`} aria-label="Chiama Pizza in Corso">
               <Icon>call</Icon><span>349 238 4245</span>
             </a>
@@ -386,7 +484,8 @@ function CartPage() {
             <div className="summary-line"><span>Articoli</span><span>{count}</span></div>
             <div className="summary-line total-line"><strong>Totale</strong><strong>{formatPrice(total)}</strong></div>
             <p className="small-note">Il pagamento avviene al ritiro. L'ordine sarà confermato dopo averci contattato.</p>
-            <a className="button button-primary full-button" href={whatsappUrl} target="_blank" rel="noreferrer"><Icon>chat</Icon> Invia ordine su WhatsApp</a>
+            <p className="order-language-note">Il riepilogo inviato su WhatsApp viene composto e inviato esclusivamente in italiano, anche se la pagina è tradotta.</p>
+            <a className="button button-primary full-button" href={whatsappUrl} target="_blank" rel="noreferrer"><Icon>chat</Icon> Invia ordine in italiano su WhatsApp</a>
             <a className="call-order" href={`tel:${phone}`}><Icon>call</Icon> Oppure chiama 349 238 4245</a>
           </aside>
         </div>
