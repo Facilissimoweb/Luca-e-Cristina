@@ -1,0 +1,355 @@
+<!DOCTYPE html><html class="dark" lang="it"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_stack" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&amp;family=Geist:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#131313;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-fixed": "#001f29", "tertiary-container": "#45cfff", "on-tertiary-container": "#00566e", "on-tertiary": "#003545", "on-surface": "#e5e2e1", "secondary": "#ffb4a8", "primary-fixed": "#ffdea0", "surface-container-highest": "#353534", "surface-container-lowest": "#0e0e0e", "inverse-on-surface": "#313030", "on-error-container": "#ffdad6", "surface-bright": "#393939", "tertiary": "#ace5ff", "on-primary-fixed-variant": "#5c4300", "surface-container-low": "#1c1b1b", "error": "#ffb4ab", "surface": "#131313", "tertiary-fixed": "#bce9ff", "surface-container-high": "#2a2a2a", "secondary-fixed": "#ffdad5", "on-background": "#e5e2e1", "on-primary-fixed": "#261a00", "tertiary-fixed-dim": "#62d4ff", "primary": "#ffd88a", "on-primary": "#402d00", "outline": "#9c8f78", "surface-container": "#201f1f", "on-primary-container": "#664a00", "on-surface-variant": "#d4c5ac", "on-secondary": "#690001", "on-error": "#690005", "outline-variant": "#504532", "on-secondary-container": "#ffa496", "primary-fixed-dim": "#fbbc0e", "inverse-surface": "#e5e2e1", "secondary-fixed-dim": "#ffb4a8", "on-tertiary-fixed-variant": "#004d63", "surface-variant": "#353534", "inverse-primary": "#795900", "surface-tint": "#fbbc0e", "surface-dim": "#131313", "on-secondary-fixed": "#410000", "primary-container": "#f5b700", "on-secondary-fixed-variant": "#930001", "background": "#131313", "error-container": "#93000a", "secondary-container": "#9c0202" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "margin-mobile": "1rem", "space-xl": "1.5rem", "space-md": "0.75rem", "space-xs": "0.25rem", "margin": "1.5rem", "space-lg": "1rem", "space-sm": "0.5rem", "gutter-mobile": "0.75rem", "gutter": "1rem" }, fontFamily: { "body-sm": ["Geist"], "headline-xl-mobile": ["Archivo Narrow"], "body-lg": ["Geist"], "headline-sm": ["Archivo Narrow"], "label-sm": ["Geist"], "label-lg": ["Geist"], "headline-lg": ["Archivo Narrow"], "headline-xl": ["Archivo Narrow"], "label-md": ["Geist"], "headline-md": ["Archivo Narrow"], "body-md": ["Geist"] }, fontSize: { "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}], "headline-xl-mobile": ["28px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}], "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}], "headline-sm": ["16px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}], "label-sm": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600"}], "label-lg": ["14px", {"lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600"}], "headline-lg": ["24px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700"}], "headline-xl": ["36px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "500"}], "headline-md": ["20px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600"}], "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}] } } } }</script></head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.5)]"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><button aria-label="Torna indietro" class="w-11 h-11 flex items-center justify-center text-on-surface rounded hover:bg-surface-container active:bg-surface-bright transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[22px]">arrow_back</span></button><img alt="Pizza in Corso Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrCu3a-kZQc22i9c1nvDn1TifpJcCiGrsMHFJXtq2CLG__9eK13nJR5pzdytZYpMCD8VpcWHoLu3Ez2B12CXGzrFD6FvuWHPbLg54-p_4MskDGqrdBb5bJmUWo74Bg7o7QV0B23AFBqkdVj1vw1jG0yH9rrUEGIjewWj0QkWvJ4OwR9WlTpte8eWLu_8ANgPrBj3wRNusvh1c4P0zTLBrFEbjcvxSkxhvWanKFkg4bNT"><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface truncate">Dettaglio Pizza</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Pizza in Corso</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><a aria-label="Chiama 349 238 4245" class="w-11 h-11 bg-surface-container-high hover:bg-surface-container-highest active:bg-surface-bright rounded text-primary flex items-center justify-center transition-colors" href="tel:+393492384245"><span class="material-symbols-outlined text-[20px]">call</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface"><div class="flex flex-col w-full">
+<!-- Modal Context Sub-Header (Street Utility Style) -->
+<div class="w-full bg-surface-container-low px-margin-mobile py-space-sm flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-xs min-w-0">
+<button aria-label="Chiudi carrello" class="w-9 h-9 rounded bg-surface-container hover:bg-surface-container-high active:bg-surface-bright text-on-surface flex items-center justify-center transition-colors" onclick="history.back()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<div class="flex flex-col min-w-0">
+<h1 class="font-headline-sm text-headline-sm text-on-surface truncate">Carrello Ordine</h1>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          Forni Accesi • Macerata
+        </span>
+</div>
+</div>
+<a class="h-9 px-space-md bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm rounded flex items-center gap-space-xs shadow transition-all active:scale-95" href="tel:+393492384245">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span>Ordina Ora</span>
+</a>
+</div>
+<!-- Pickup Info Street Banner -->
+<div class="px-margin-mobile pt-space-md">
+<div class="w-full bg-surface-container p-space-md rounded-xl flex items-start gap-space-sm shadow-sm relative overflow-hidden">
+<div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-primary/10 to-transparent pointer-events-none"></div>
+<div class="w-9 h-9 rounded bg-surface-container-high text-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface">Ritiro Rapido al Banco</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          Senza attesa in Corso Camillo Benso Conte di Cavour, Macerata.
+        </p>
+</div>
+</div>
+</div><section class="px-margin-mobile pt-space-md"><div class="w-full bg-surface-container-low rounded-xl p-space-md border border-outline-variant/30 flex flex-col gap-space-sm"><div class="flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[20px]">schedule</span><h2 class="font-headline-sm text-headline-sm text-on-surface">Orario di Ritiro Desiderato</h2></div><span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm border border-primary/20">Consigliato +30 min</span></div><div class="grid grid-cols-2 gap-space-xs mt-1"><button type="button" class="py-2 px-space-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm transition-colors text-center"><span class="material-symbols-outlined text-[16px]">bolt</span><span>Prima possibile (~25-30 min)</span></button><button type="button" class="py-2 px-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 border border-outline-variant/40 transition-colors text-center"><span class="material-symbols-outlined text-[16px]">calendar_today</span><span>Programma stasera</span></button></div><div class="flex flex-col gap-1.5 pt-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Fasce orarie forni (Stasera):</span><div class="flex items-center gap-1.5 overflow-x-auto pb-1"><button type="button" class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap">19:15</button><button type="button" class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap">19:30</button><button type="button" class="px-2.5 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm font-bold whitespace-nowrap shadow-sm">19:45</button><button type="button" class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap">20:00</button><button type="button" class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap">20:15</button><button type="button" class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap">20:30</button><button type="button" class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap">20:45</button></div></div><div class="flex items-start gap-1.5 pt-1 text-on-surface-variant font-body-sm text-body-sm"><span class="material-symbols-outlined text-[16px] text-primary flex-shrink-0 mt-0.5">info</span><p class="text-[12px] leading-tight">Prepareremo la tua pinsa calda e croccante esattamente all'orario indicato per evitare attese in Corso Cavour.</p></div></div></section>
+<!-- Basket Items Section -->
+<section class="px-margin-mobile pt-space-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">Articoli nel Carrello</h2>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm font-bold" id="items-count-badge">4</span>
+</div>
+<button class="text-error hover:text-on-error-container active:scale-95 flex items-center gap-1 font-label-md text-label-md transition-colors py-1 px-2 rounded hover:bg-surface-container" id="clear-cart-btn" onclick="clearCart()">
+<span class="material-symbols-outlined text-[16px]">delete_sweep</span>
+<span>Svuota</span>
+</button>
+</div>
+<!-- Items List Container -->
+<div class="flex flex-col gap-space-md" id="cart-items-container">
+<!-- Item 1: Pinsa Emiliana -->
+<article class="cart-item bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-sm transition-all duration-300" data-id="emiliana" data-price="9.00">
+<div class="flex items-start gap-space-sm">
+<img class="w-20 h-20 rounded-lg object-cover flex-shrink-0 bg-surface-container-highest" data-alt="Roman style long gourmet pinsa topped with rich pistachio pesto, Italian mortadella slices, and crushed pistachios, displayed on dark slate board with warm atmospheric light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8g4N27q5rHQfPHmWuyoWDMVKdVRIcqQLztdLje2ENGhBSXtqXcs2tcHREMvUI1wB3QYi37rgoNnxq-5uX15DcYzGk0Gc1h7AU69MLIzebqGMYiqPzWF7ZAzjUm_2MfnnaS3WHyziFgb0nGaKFZjG1KuoMr9JCM31pvbK4vfM5wn_MGykPLPHw0ynp_yyDrRGlrZo6f3c-gkdPUvAbHTWwPg4TL7jOzVkshSQe4jg">
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-start justify-between gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Emiliana</h3>
+<span class="item-total-price font-headline-sm text-headline-sm text-primary flex-shrink-0">€ 9,00</span>
+</div>
+<div class="inline-flex items-center gap-1 self-start px-1.5 py-0.5 rounded bg-surface-container text-primary font-label-sm text-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[12px]">local_pizza</span>
+<span>Pinsa Intera</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">
+              Mozzarella fior di latte, mortadella IGP, pesto artigianale di pistacchio, granella di pistacchi tostati.
+            </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">€ 9,00 cad.</span>
+<!-- Stepper -->
+<div class="flex items-center bg-surface-container-high rounded p-0.5 gap-2">
+<button aria-label="Riduci Emiliana" class="w-8 h-8 rounded bg-surface-container text-on-surface hover:bg-surface-bright active:scale-90 flex items-center justify-center transition-transform" onclick="updateQty(this, -1)">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="item-qty font-headline-sm text-headline-sm text-on-surface w-6 text-center tabular-nums">1</span>
+<button aria-label="Aumenta Emiliana" class="w-8 h-8 rounded bg-primary text-on-primary hover:bg-primary-fixed-dim active:scale-90 flex items-center justify-center transition-transform" onclick="updateQty(this, 1)">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Item 2: Patatosa -->
+<article class="cart-item bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-sm transition-all duration-300" data-id="patatosa" data-price="1.50">
+<div class="flex items-start gap-space-sm">
+<img class="w-20 h-20 rounded-lg object-cover flex-shrink-0 bg-surface-container-highest" data-alt="Traditional square slice of Roman pizza al taglio topped with thinly sliced golden roasted potatoes, rosemary, sweet braised onions, dark moody street food background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv8w8bIYzcF0qzWn19vgxyu8RI-x0mGCZZwuRoaGwY1z8zrIj6LmcOe_nAn2FZ1vzGt-I7CKMSVmpXiu_aD7JmKrUi-A6xc3EMdbP4MQyOxoced0kC2y5aa3M93ItXHSKsKVcpZas8zeRHK9jY9R5IukSue0eTG_yXGPSg7fa6O03sgcCWSHDCNrEI8-K6Mdx3R8x2-yJRaNgvmPEL1hiWuKZMNYFGd5gw60zXlCg">
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-start justify-between gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Patatosa</h3>
+<span class="item-total-price font-headline-sm text-headline-sm text-primary flex-shrink-0">€ 3,00</span>
+</div>
+<div class="inline-flex items-center gap-1 self-start px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[12px]">crop_square</span>
+<span>Trancio Al Taglio</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">
+              Mozzarella, sfoglie di patate dorate al forno a legna, cipolla stufata e rosmarino fresco.
+            </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">€ 1,50 cad.</span>
+<!-- Stepper -->
+<div class="flex items-center bg-surface-container-high rounded p-0.5 gap-2">
+<button aria-label="Riduci Patatosa" class="w-8 h-8 rounded bg-surface-container text-on-surface hover:bg-surface-bright active:scale-90 flex items-center justify-center transition-transform" onclick="updateQty(this, -1)">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="item-qty font-headline-sm text-headline-sm text-on-surface w-6 text-center tabular-nums">2</span>
+<button aria-label="Aumenta Patatosa" class="w-8 h-8 rounded bg-primary text-on-primary hover:bg-primary-fixed-dim active:scale-90 flex items-center justify-center transition-transform" onclick="updateQty(this, 1)">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Item 3: Tonno e Cipolla -->
+<article class="cart-item bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-sm transition-all duration-300" data-id="tonno" data-price="1.50">
+<div class="flex items-start gap-space-sm">
+<img class="w-20 h-20 rounded-lg object-cover flex-shrink-0 bg-surface-container-highest" data-alt="Close up of crispy thick airy Roman pizza slice with melted fior di latte mozzarella, tender Italian tuna flakes, caramelized red onions and wild oregano." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7iGd_U6BMhpJW4rx8f_15XX2eNdXdU2CD6_TdlJuSA_0rW-uRYAFdrXKssNzn3Ej6TIlnzOIWpIfpGFzCtlLJmj306izi3x5g-3J8EuBK2NcyyIEJKVkTGfuKpk8JQLnxERqBQz58WjXN0s_fzsWdsflmNiECAEVXp0Yykfba9GUBcAoV9S-tA78zUvIjCHVD6H3mJ064MRyGuzUig-pRBP14_fV4IZCWj8lc8wM">
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-start justify-between gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Tonno e Cipolla</h3>
+<span class="item-total-price font-headline-sm text-headline-sm text-primary flex-shrink-0">€ 1,50</span>
+</div>
+<div class="inline-flex items-center gap-1 self-start px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[12px]">crop_square</span>
+<span>Trancio Al Taglio</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">
+              Mozzarella, filetto di tonno all'olio extravergine d'oliva, cipolla rossa di Tropea e origano.
+            </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">€ 1,50 cad.</span>
+<!-- Stepper -->
+<div class="flex items-center bg-surface-container-high rounded p-0.5 gap-2">
+<button aria-label="Riduci Tonno e Cipolla" class="w-8 h-8 rounded bg-surface-container text-on-surface hover:bg-surface-bright active:scale-90 flex items-center justify-center transition-transform" onclick="updateQty(this, -1)">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="item-qty font-headline-sm text-headline-sm text-on-surface w-6 text-center tabular-nums">1</span>
+<button aria-label="Aumenta Tonno e Cipolla" class="w-8 h-8 rounded bg-primary text-on-primary hover:bg-primary-fixed-dim active:scale-90 flex items-center justify-center transition-transform" onclick="updateQty(this, 1)">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Empty State Fallback (Hidden initially) -->
+<div class="hidden flex-col items-center justify-center py-space-xl px-margin-mobile text-center bg-surface-container-low rounded-xl" id="cart-empty-state">
+<div class="w-16 h-16 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center mb-space-sm">
+<span class="material-symbols-outlined text-[32px]">shopping_basket</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Il tuo carrello è vuoto</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-xs">
+        I forni sono caldi e le pinse stanno lievitando. Scegli i tuoi tranci preferiti dal menù!
+      </p>
+<button class="mt-space-md h-10 px-space-lg bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm rounded flex items-center gap-space-xs" onclick="history.back()">
+<span class="material-symbols-outlined text-[18px]">restaurant_menu</span>
+<span>Torna al Menù</span>
+</button>
+</div>
+</section>
+<!-- Special Artisan Craft Badge -->
+<div class="px-margin-mobile pt-space-lg">
+<div class="bg-surface-container-high/60 rounded-xl p-space-sm flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">hourglass_bottom</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface text-[14px]">Farine Selezionate &amp; 72h di Lievitazione</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Alta digeribilità, croccantezza romana inimitabile</span>
+</div>
+</div>
+</div>
+<!-- Order Summary Card -->
+<section class="px-margin-mobile pt-space-lg pb-space-xl">
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface">Riepilogo Ordine Asporto</h2>
+<span class="font-label-sm text-label-sm text-primary uppercase bg-surface-container px-2 py-0.5 rounded">Banco Cavour</span>
+</div>
+<!-- Itemized Lines -->
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant" id="summary-breakdown"><div class="flex justify-between items-center text-on-surface-variant"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-primary">schedule</span>Orario di Ritiro</span><span class="text-primary font-medium font-label-sm text-label-sm">19:45 (Stasera)</span></div><div class="flex justify-between items-center py-1">
+          <span class="text-on-surface">1 × Emiliana (local_pizza
+Pinsa Intera)</span>
+          <span class="text-on-surface font-medium">€ 9,00</span>
+        </div><div class="flex justify-between items-center py-1">
+          <span class="text-on-surface">2 × Patatosa (crop_square
+Trancio Al Taglio)</span>
+          <span class="text-on-surface font-medium">€ 3,00</span>
+        </div><div class="flex justify-between items-center py-1">
+          <span class="text-on-surface">1 × Tonno e Cipolla (crop_square
+Trancio Al Taglio)</span>
+          <span class="text-on-surface font-medium">€ 1,50</span>
+        </div></div>
+<div class="w-full h-px bg-surface-container-highest my-0.5"></div>
+<!-- Totals & Perks -->
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm"><div class="flex justify-between items-center text-on-surface-variant"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-primary">schedule</span>Orario di Ritiro</span><span class="text-primary font-medium font-label-sm text-label-sm">19:45 (Stasera)</span></div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Subtotale Prodotti</span>
+<span class="font-medium text-on-surface" id="subtotal-val">€ 13,50</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">eco</span>
+            Lievitazione Naturale 72 Ore
+          </span>
+<span class="text-primary font-medium">Inclusa</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">takeout_dining</span>
+            Contributo Asporto Corso Cavour
+          </span>
+<span class="text-primary font-medium uppercase font-label-sm text-label-sm">Gratuito</span>
+</div>
+</div>
+<div class="w-full h-px bg-surface-container-highest my-0.5"></div>
+<!-- Grand Total -->
+<div class="flex items-baseline justify-between pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Totale da Saldare al Ritiro</span>
+<span class="font-headline-xl-mobile text-headline-xl-mobile text-primary font-bold" id="grand-total-val">€ 13,50</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pagamento contanti o POS</span>
+</div>
+</div>
+<!-- Primary Action: Invia Ordine Call / WhatsApp -->
+<a class="w-full h-12 bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm rounded flex items-center justify-center gap-space-xs shadow-md transition-transform active:scale-[0.98] mt-space-xs" href="https://wa.me/393492384245?text=Ciao%20Pizza%20in%20Corso!%20Vorrei%20confermare%20questo%20ordine%20da%20asporto:%201%20Pinsa%20Emiliana,%202%20Tranci%20Patatosa,%201%20Trancio%20Tonno%20e%20Cipolla." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span>Conferma e Invia su WhatsApp</span>
+</a>
+<!-- Secondary Phone Alternative -->
+<a class="w-full h-10 bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-headline-sm rounded flex items-center justify-center gap-space-xs transition-colors" href="tel:+393492384245">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Oppure Chiama il 349 238 4245</span>
+</a>
+</div>
+</section>
+<!-- Sticky In-Cart Action Bar -->
+<div class="sticky bottom-0 left-0 right-0 z-40 bg-surface-container-lowest/95 backdrop-blur-xl px-margin-mobile py-space-sm shadow-xl flex items-center justify-between gap-space-sm">
+<button class="h-11 px-space-md bg-surface-container hover:bg-surface-container-high active:bg-surface-bright text-on-surface font-label-lg text-label-lg rounded flex items-center gap-1.5 transition-colors flex-shrink-0" onclick="history.back()">
+<span class="material-symbols-outlined text-[18px]">restaurant_menu</span>
+<span>Modifica Menù</span>
+</button>
+<div class="flex items-center gap-space-sm flex-1 justify-end min-w-0">
+<div class="flex flex-col items-end flex-shrink-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Totale</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold" id="sticky-bar-total">€ 13,50</span>
+</div>
+<a class="h-11 px-space-lg bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm rounded flex items-center justify-center gap-space-xs shadow transition-all active:scale-95 flex-shrink-0" href="tel:+393492384245">
+<span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+<span>Conferma Asporto</span>
+</a>
+</div>
+</div>
+</div>
+<script>
+  function formatCurrency(amount) {
+    return '€ ' + amount.toFixed(2).replace('.', ',');
+  }
+
+  function recalculateCart() {
+    const items = document.querySelectorAll('.cart-item');
+    let totalCount = 0;
+    let totalPrice = 0.0;
+    const breakdownContainer = document.getElementById('summary-breakdown');
+    breakdownContainer.innerHTML = '';
+
+    items.forEach(item => {
+      const price = parseFloat(item.dataset.price);
+      const qtyElem = item.querySelector('.item-qty');
+      const qty = parseInt(qtyElem.textContent, 10);
+      const itemTitle = item.querySelector('h3').textContent.trim();
+      const formatTag = item.querySelector('.font-label-sm').textContent.trim();
+
+      if (qty > 0) {
+        totalCount += qty;
+        const itemLineTotal = price * qty;
+        totalPrice += itemLineTotal;
+        item.querySelector('.item-total-price').textContent = formatCurrency(itemLineTotal);
+
+        // Add summary line
+        const line = document.createElement('div');
+        line.className = 'flex justify-between items-center py-1';
+        line.innerHTML = `
+          <span class="text-on-surface">${qty} × ${itemTitle} (${formatTag})</span>
+          <span class="text-on-surface font-medium">${formatCurrency(itemLineTotal)}</span>
+        `;
+        breakdownContainer.appendChild(line);
+      }
+    });
+
+    const countBadge = document.getElementById('items-count-badge');
+    const subtotalElem = document.getElementById('subtotal-val');
+    const grandTotalElem = document.getElementById('grand-total-val');
+    const stickyTotalElem = document.getElementById('sticky-bar-total');
+    const emptyState = document.getElementById('cart-empty-state');
+    const cartContainer = document.getElementById('cart-items-container');
+
+    countBadge.textContent = totalCount;
+    subtotalElem.textContent = formatCurrency(totalPrice);
+    grandTotalElem.textContent = formatCurrency(totalPrice);
+    stickyTotalElem.textContent = formatCurrency(totalPrice);
+
+    if (totalCount === 0) {
+      cartContainer.classList.add('hidden');
+      emptyState.classList.remove('hidden');
+      emptyState.classList.add('flex');
+    } else {
+      cartContainer.classList.remove('hidden');
+      emptyState.classList.add('hidden');
+      emptyState.classList.remove('flex');
+    }
+  }
+
+  function updateQty(btn, delta) {
+    const card = btn.closest('.cart-item');
+    const qtySpan = card.querySelector('.item-qty');
+    let currentQty = parseInt(qtySpan.textContent, 10);
+    currentQty = Math.max(0, currentQty + delta);
+    qtySpan.textContent = currentQty;
+
+    if (currentQty === 0) {
+      card.style.opacity = '0.3';
+      card.style.transform = 'scale(0.97)';
+      setTimeout(() => {
+        card.remove();
+        recalculateCart();
+      }, 150);
+    } else {
+      card.style.opacity = '1';
+      card.style.transform = 'scale(1)';
+      recalculateCart();
+    }
+  }
+
+  function clearCart() {
+    const items = document.querySelectorAll('.cart-item');
+    items.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(-8px)';
+    });
+    setTimeout(() => {
+      items.forEach(card => card.remove());
+      recalculateCart();
+    }, 200);
+  }
+
+  // Initial pass to sync dynamically
+  document.addEventListener('DOMContentLoaded', recalculateCart);
+</script></main><div class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-low/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.7)] px-margin-mobile py-space-sm"><div class="max-w-lg mx-auto"><a class="w-full h-12 bg-primary-container hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm rounded flex items-center justify-center gap-space-xs tracking-tight transition-colors shadow-md" href="tel:+393492384245"><span class="material-symbols-outlined text-[20px]">call</span><span>Chiama e Ordina (349 238 4245)</span></a></div></div>
+
+</body></html>
