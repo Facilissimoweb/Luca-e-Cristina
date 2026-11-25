@@ -18,12 +18,12 @@ const address = "Corso Camillo Benso Conte di Cavour, 110, 62100 Macerata MC";
 const mapSearch = encodeURIComponent(address);
 const parkingSearch = encodeURIComponent(`parcheggi vicino a ${address}`);
 const translationLanguages = [
-  { code: "it", label: "Italiano", nativeLabel: "Italiano" },
-  { code: "en", label: "Inglese", nativeLabel: "English" },
-  { code: "fr", label: "Francese", nativeLabel: "Français" },
-  { code: "es", label: "Spagnolo", nativeLabel: "Español" },
-  { code: "zh-CN", label: "Cinese semplificato", nativeLabel: "中文（简体）" },
-  { code: "ar", label: "Arabo", nativeLabel: "العربية" },
+  { code: "it", shortCode: "IT", label: "Italiano", nativeLabel: "Italiano" },
+  { code: "en", shortCode: "EN", label: "Inglese", nativeLabel: "English" },
+  { code: "fr", shortCode: "FR", label: "Francese", nativeLabel: "Français" },
+  { code: "es", shortCode: "ES", label: "Spagnolo", nativeLabel: "Español" },
+  { code: "zh-CN", shortCode: "ZH", label: "Cinese semplificato", nativeLabel: "中文（简体）" },
+  { code: "ar", shortCode: "AR", label: "Arabo", nativeLabel: "العربية" },
 ];
 
 function ScrollToTop() {
@@ -45,47 +45,49 @@ function LanguageControl() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    document.querySelectorAll(".goog-te-banner-frame").forEach((frame) => frame.remove());
-    document.body.style.removeProperty("top");
+    document.querySelectorAll("iframe.goog-te-banner-frame, .goog-te-banner-frame, body > .skiptranslate")
+      .forEach((frame) => frame.remove());
+    document.body.style.setProperty("top", "0", "important");
     document.cookie = "googtrans=; Max-Age=0; path=/";
   }, []);
 
   return (
-    <div className="language-control">
+    <aside className="language-control" aria-label="Traduzione della pagina">
       <button
         className="language-trigger"
         type="button"
-        aria-label="Seleziona la lingua della pagina"
+        aria-label="Apri le opzioni di traduzione, italiano, inglese, francese, spagnolo, cinese semplificato e arabo"
         aria-expanded={isOpen}
         aria-haspopup="menu"
         onClick={() => setIsOpen((open) => !open)}
       >
-        <Icon>translate</Icon><span>Lingua</span>
+        <Icon>translate</Icon><span>IT</span>
       </button>
       {isOpen && (
         <div className="language-popover" role="menu" aria-label="Lingua della pagina">
           <span className="language-heading">Traduci la pagina</span>
-        <p className="language-status">Si apre una copia tradotta in una nuova scheda. Questa pagina resta invariata.</p>
-          {translationLanguages.map(({ code, label, nativeLabel }) => (
-          <a
+          <p className="language-status">Si apre una copia tradotta in una nuova scheda. Questa pagina resta invariata.</p>
+          {translationLanguages.map(({ code, shortCode, label, nativeLabel }) => (
+            <a
               key={code}
-            className="language-option"
-            role="menuitem"
+              className="language-option"
+              role="menuitem"
               lang={code}
-            href={code === "it"
-              ? window.location.href
-              : `https://translate.google.com/translate?sl=it&tl=${encodeURIComponent(code)}&u=${encodeURIComponent(window.location.href)}`}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => setIsOpen(false)}
+              href={code === "it"
+                ? window.location.href
+                : `https://translate.google.com/translate?sl=it&tl=${encodeURIComponent(code)}&u=${encodeURIComponent(window.location.href)}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setIsOpen(false)}
             >
-              <span>{nativeLabel}</span><small>{label}</small>
-            <Icon>open_in_new</Icon>
-          </a>
+              <span className="language-code">{shortCode}</span>
+              <span className="language-name">{nativeLabel}<small>{label}</small></span>
+              <Icon>open_in_new</Icon>
+            </a>
           ))}
         </div>
       )}
-    </div>
+    </aside>
   );
 }
 
@@ -116,7 +118,6 @@ function SiteLayout() {
             <NavLink to="/dove-siamo">Dove siamo</NavLink>
           </nav>
           <div className="header-actions">
-            <LanguageControl />
             <a className="phone-link" href={`tel:${phone}`} aria-label="Chiama Pizza in Corso">
               <Icon>call</Icon><span>349 238 4245</span>
             </a>
@@ -126,6 +127,7 @@ function SiteLayout() {
           </div>
         </div>
       </header>
+      <LanguageControl />
       <main className="page-main"><Outlet /></main>
       <footer className="site-footer">
         <Link className="footer-brand" to="/">Pizza in Corso</Link>
