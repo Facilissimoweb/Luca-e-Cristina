@@ -43,54 +43,12 @@ function Icon({ children, className = "" }) {
 
 function LanguageControl() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isReady, setIsReady] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("it");
-  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    const savedTranslation = document.cookie.match(/(?:^|;\s*)googtrans=\/it\/([^;]+)/);
-    if (savedTranslation) setSelectedLanguage(decodeURIComponent(savedTranslation[1]));
-
-    let active = true;
-    window.googleTranslateElementInit = () => {
-      if (!active || !window.google?.translate?.TranslateElement) return;
-      new window.google.translate.TranslateElement({
-        pageLanguage: "it",
-        includedLanguages: "en,fr,es,zh-CN,ar",
-        autoDisplay: false,
-      }, "google_translate_element");
-      setIsReady(true);
-      setMessage("");
-    };
-
-    if (window.google?.translate?.TranslateElement) {
-      window.googleTranslateElementInit();
-    } else if (!document.getElementById("google-translate-script")) {
-      const script = document.createElement("script");
-      script.id = "google-translate-script";
-      script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-      script.async = true;
-      script.onerror = () => setMessage("Google Translate non è raggiungibile. Verifica la connessione e ricarica la pagina.");
-      document.head.appendChild(script);
-    }
-
-    return () => {
-      active = false;
-    };
+    document.querySelectorAll(".goog-te-banner-frame").forEach((frame) => frame.remove());
+    document.body.style.removeProperty("top");
+    document.cookie = "googtrans=; Max-Age=0; path=/";
   }, []);
-
-  const changeLanguage = (language) => {
-    const selector = document.querySelector("#google_translate_element select.goog-te-combo");
-    if (!selector) {
-      setMessage("Traduzione in caricamento. Riprova tra qualche secondo.");
-      return;
-    }
-    selector.value = language === "it" ? "" : language;
-    selector.dispatchEvent(new Event("change", { bubbles: true }));
-    setSelectedLanguage(language);
-    setMessage("");
-    setIsOpen(false);
-  };
 
   return (
     <div className="language-control">
@@ -107,25 +65,26 @@ function LanguageControl() {
       {isOpen && (
         <div className="language-popover" role="menu" aria-label="Lingua della pagina">
           <span className="language-heading">Traduci la pagina</span>
+        <p className="language-status">Si apre una copia tradotta in una nuova scheda. Questa pagina resta invariata.</p>
           {translationLanguages.map(({ code, label, nativeLabel }) => (
-            <button
+          <a
               key={code}
-              className={`language-option${selectedLanguage === code ? " selected" : ""}`}
-              type="button"
-              role="menuitemradio"
-              aria-checked={selectedLanguage === code}
+            className="language-option"
+            role="menuitem"
               lang={code}
-              onClick={() => changeLanguage(code)}
+            href={code === "it"
+              ? window.location.href
+              : `https://translate.google.com/translate?sl=it&tl=${encodeURIComponent(code)}&u=${encodeURIComponent(window.location.href)}`}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setIsOpen(false)}
             >
               <span>{nativeLabel}</span><small>{label}</small>
-              {selectedLanguage === code && <Icon>check</Icon>}
-            </button>
+            <Icon>open_in_new</Icon>
+          </a>
           ))}
-          {message && <p className="language-status" role="status">{message}</p>}
-          {!isReady && !message && <p className="language-status">Caricamento traduzione Google…</p>}
         </div>
       )}
-      <div id="google_translate_element" className="google-translate-widget" aria-hidden="true" />
     </div>
   );
 }
