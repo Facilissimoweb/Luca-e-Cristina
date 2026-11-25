@@ -81,8 +81,23 @@ export default async function handler(req, res) {
 
     const result = await response.json();
     if (!response.ok) {
-      console.error("Risposta Groq non riuscita.", response.status, result.error?.message);
-      return sendJson(res, 502, { error: "Il servizio chat non è disponibile al momento. Riprova o chiama Luca." });
+      const details = typeof result.error?.message === "string"
+        ? result.error.message.replace(/gsk_[A-Za-z0-9_-]+/g, "[chiave oscurata]").slice(0, 240)
+        : "";
+      console.error("Risposta Groq non riuscita.", response.status, details);
+      const reason = response.status === 401
+        ? "Groq non ha accettato la chiave: verifica che GROQ_API_KEY sia corretta e attiva."
+        : response.status === 403 || response.status === 402
+          ? "Groq ha rifiutato la richiesta per accesso al modello o disponibilità del piano."
+          : response.status === 404
+            ? "Il modello Groq configurato non è disponibile: verifica GROQ_MODEL."
+            : response.status === 429
+              ? "È stato raggiunto un limite di richieste o di utilizzo Groq."
+              : `Groq ha rifiutato la richiesta (HTTP ${response.status}).`;
+      return sendJson(res, 502, {
+        error: details ? `${reason} Dettaglio: ${details}` : reason,
+        providerStatus: response.status,
+      });
     }
 
     const reply = result.choices?.[0]?.message?.content;
@@ -93,6 +108,9 @@ export default async function handler(req, res) {
     return sendJson(res, 200, { reply: reply.trim() });
   } catch (error) {
     console.error("Chiamata al servizio Groq non riuscita.", error);
+    if (error.name === "TimeoutError") {
+      return sendJson(res, 504, { error: "Groq ha impiegato troppo tempo a rispondere. Riprova tra poco." });
+    }
     return sendJson(res, 502, { error: "Connessione alla chat non riuscita. Riprova o chiama Luca." });
   }
 }
