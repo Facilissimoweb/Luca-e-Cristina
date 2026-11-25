@@ -14,8 +14,9 @@ import { formatNames, formatPrice, menuItems } from "./data/menu.js";
 import { useCart } from "./context/CartContext.jsx";
 
 const phone = "+393492384245";
-const address = "Corso Camillo Benso Conte di Cavour 48, 62100 Macerata";
+const address = "Corso Camillo Benso Conte di Cavour, 110, 62100 Macerata MC";
 const mapSearch = encodeURIComponent(address);
+const parkingSearch = encodeURIComponent(`parcheggi vicino a ${address}`);
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -72,7 +73,7 @@ function SiteLayout() {
       <footer className="site-footer">
         <Link className="footer-brand" to="/">Pizza in Corso</Link>
         <Link to="/chi-siamo">Chi siamo</Link>
-        <span>Corso Cavour 48 · Macerata</span>
+        <span>Corso Cavour 110 · Macerata</span>
         <a href={`tel:${phone}`}>349 238 4245</a>
       </footer>
       <nav className="mobile-nav" aria-label="Navigazione">
@@ -124,7 +125,7 @@ function HomePage() {
 
       <section className="home-info-grid">
         <InfoTile icon="bakery_dining" title="Impasto lento" text="Maturazione naturale di 72 ore: fuori croccante, dentro morbido." to="/impasto" link="Scopri come lo facciamo" />
-        <InfoTile icon="near_me" title="Ci trovi in centro" text="Ritiro da asporto in Corso Cavour 48, nel cuore di Macerata." to="/dove-siamo" link="Indicazioni stradali" />
+        <InfoTile icon="near_me" title="Ci trovi in centro" text="Ritiro da asporto in Corso Cavour 110, nel cuore di Macerata." to="/dove-siamo" link="Indicazioni stradali" />
         <InfoTile icon="schedule" title="Ordina in anticipo" text="Chiamaci per concordare il ritiro e trovare la pinsa appena pronta." to="/orari" link="Orari e contatti" />
       </section>
     </div>
@@ -423,6 +424,11 @@ function LocationPage() {
         </div>
       </section>
       <div className="location-tip"><Icon>lightbulb</Icon><p><strong>Un consiglio:</strong> chiamaci prima di partire, così prepariamo il tuo ordine e riduci l'attesa al banco.</p><Link className="text-link" to="/menu">Scegli cosa ordinare <Icon>arrow_forward</Icon></Link></div>
+      <div className="location-tip parking-tip">
+        <Icon>local_parking</Icon>
+        <p><strong>Arrivi in auto?</strong> Nelle vicinanze trovi parcheggi pubblici. Apri la mappa per vedere quelli intorno a Corso Cavour 110; disponibilità e tariffe possono variare.</p>
+        <a className="text-link" href={`https://www.google.com/maps/search/?api=1&query=${parkingSearch}`} target="_blank" rel="noreferrer">Cerca parcheggi vicini <Icon>arrow_forward</Icon></a>
+      </div>
     </div>
   );
 }
@@ -448,7 +454,7 @@ function HoursPage() {
       <section className="hours-card">
         <div className="hours-row"><Icon>schedule</Icon><span><strong>Orario riportato sul menu</strong><small>Da martedì a domenica · 16:00–21:00</small></span><span className="hours-badge">Verifica per telefono</span></div>
         <div className="hours-row"><Icon>call</Icon><span><strong>Ordini e informazioni</strong><small>349 238 4245</small></span><a className="button button-primary" href={`tel:${phone}`}>Chiama</a></div>
-        <div className="hours-row"><Icon>pin_drop</Icon><span><strong>Ritiro da asporto</strong><small>Corso Cavour 48 · Macerata</small></span><Link className="button button-secondary" to="/dove-siamo">Apri mappa</Link></div>
+        <div className="hours-row"><Icon>pin_drop</Icon><span><strong>Ritiro da asporto</strong><small>Corso Cavour 110 · Macerata</small></span><Link className="button button-secondary" to="/dove-siamo">Apri mappa</Link></div>
       </section>
       <p className="menu-note">Gli orari possono cambiare in base alla giornata e alle disponibilità del forno. La telefonata è il modo più sicuro per confermare l'apertura e prenotare.</p>
     </div>
